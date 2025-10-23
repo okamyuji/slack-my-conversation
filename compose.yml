@@ -1,0 +1,51 @@
+services:
+  slack-messages:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+    image: slack-messages:latest
+    container_name: slack-messages-app
+    volumes:
+      - ./src:/app/src:ro
+      - ./.env:/app/.env:ro
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - slack-network
+
+  # 開発環境用コンテナ
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: slack-messages:dev
+    container_name: slack-messages-dev
+    volumes:
+      - .:/app
+      - uv-cache:/root/.cache/uv
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    networks:
+      - slack-network
+
+networks:
+  slack-network:
+    driver: bridge
+
+volumes:
+  uv-cache:
+    driver: local

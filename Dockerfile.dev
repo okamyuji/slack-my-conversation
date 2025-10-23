@@ -1,0 +1,31 @@
+# 開発環境用Dockerfile
+FROM ghcr.io/astral-sh/uv:python3.14-bookworm
+
+# 作業ディレクトリの設定
+WORKDIR /app
+
+# 環境変数の設定
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    UV_COMPILE_BYTECODE=1
+
+# 依存関係ファイルとREADMEのコピー
+COPY pyproject.toml uv.lock* README.md ./
+
+# 開発依存関係を含むすべての依存関係のインストール（プロジェクトなし）
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-install-project --all-extras
+
+# ソースコードのコピー
+COPY . .
+
+# プロジェクトのインストール
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --all-extras
+
+# pre-commitのインストール
+RUN uv run pre-commit install || true
+
+# エントリーポイント
+CMD ["/bin/bash"]
+
