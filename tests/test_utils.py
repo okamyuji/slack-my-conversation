@@ -46,4 +46,3 @@ def test_timestamp_to_readable_invalid() -> None:
     """無効なタイムスタンプの処理テスト."""
     result = timestamp_to_readable("invalid")
     assert result == "invalid"
-

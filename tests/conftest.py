@@ -45,4 +45,3 @@ def sample_messages() -> list[SlackMessage]:
 def target_user_id() -> str:
     """テスト用のターゲットユーザーID."""
     return "U1234567890"
-

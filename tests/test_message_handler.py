@@ -13,9 +13,7 @@ from app.message_handler import (
 from app.types import SlackMessage
 
 
-def test_filter_messages_by_user(
-    sample_messages: list[SlackMessage], target_user_id: str
-) -> None:
+def test_filter_messages_by_user(sample_messages: list[SlackMessage], target_user_id: str) -> None:
     """ユーザーによるメッセージフィルタリングのテスト."""
     filtered = filter_messages_by_user(sample_messages, target_user_id)
     assert len(filtered) == 2
@@ -38,9 +36,7 @@ def test_display_messages_with_messages(
     assert "テストメッセージ1" in captured.out
 
 
-def test_display_messages_empty(
-    target_user_id: str, capsys: pytest.CaptureFixture[str]
-) -> None:
+def test_display_messages_empty(target_user_id: str, capsys: pytest.CaptureFixture[str]) -> None:
     """空のメッセージリストの表示テスト."""
     display_messages([], target_user_id)
     captured = capsys.readouterr()
@@ -71,4 +67,3 @@ def test_display_statistics(
     assert "統計情報" in captured.out
     assert "各ユーザーのメッセージ数" in captured.out
     assert "抽出対象" in captured.out
-

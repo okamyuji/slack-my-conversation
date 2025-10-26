@@ -10,9 +10,7 @@ from app.config import SlackConfig, validate_environment_variables
 
 def test_slack_config_initialization() -> None:
     """SlackConfigの初期化テスト."""
-    config = SlackConfig(
-        token="xoxp-test-token", channel_id="C123456", user_id="U123456"
-    )
+    config = SlackConfig(token="xoxp-test-token", channel_id="C123456", user_id="U123456")
     assert config.token == "xoxp-test-token"
     assert config.channel_id == "C123456"
     assert config.user_id == "U123456"
@@ -56,4 +54,3 @@ def test_validate_environment_variables_partial() -> None:
         pytest.raises(SystemExit),
     ):
         validate_environment_variables()
-

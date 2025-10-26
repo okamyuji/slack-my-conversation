@@ -65,4 +65,3 @@ def validate_environment_variables() -> SlackConfig:
         channel_id=config_values["SLACK_CHANNEL_ID"],
         user_id=config_values["SLACK_USER_ID"],
     )
-

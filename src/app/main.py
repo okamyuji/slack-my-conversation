@@ -79,7 +79,9 @@ def main() -> None:
         if choice == "1":
             # 方法1: search.messages APIを使用して直接特定ユーザーのメッセージを取得
             print(f"\n[方法1] 検索APIでユーザー {config.user_id} のメッセージを直接取得中...")
-            print(f"設定: 件数={limit}, 開始={start_date or '制限なし'}, 終了={end_date or '制限なし'}")
+            print(
+                f"設定: 件数={limit}, 開始={start_date or '制限なし'}, 終了={end_date or '制限なし'}"
+            )
 
             user_messages = client.search_user_messages(
                 config.channel_id,
@@ -103,8 +105,12 @@ def main() -> None:
 
         elif choice == "2":
             # 方法2: 従来の方法（全メッセージ取得後フィルタリング）
-            print(f"\n[方法2] チャンネル {config.channel_id} の全メッセージを取得してからフィルタリング...")
-            print(f"設定: 件数={limit}, 開始={start_date or '制限なし'}, 終了={end_date or '制限なし'}")
+            print(
+                f"\n[方法2] チャンネル {config.channel_id} の全メッセージを取得してからフィルタリング..."
+            )
+            print(
+                f"設定: 件数={limit}, 開始={start_date or '制限なし'}, 終了={end_date or '制限なし'}"
+            )
 
             # 全件取得の確認
             get_all_input = get_user_input("\n全メッセージを取得しますか？（y/n、デフォルト: n）: ")
@@ -152,4 +158,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

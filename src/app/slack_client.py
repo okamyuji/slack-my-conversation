@@ -220,4 +220,3 @@ class SlackClient:
             print("ワークスペースに再インストールしてください。")
         elif error_msg == "invalid_arguments":
             print("検索クエリが無効です。チャンネルIDやユーザーIDを確認してください。")
-

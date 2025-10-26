@@ -42,4 +42,3 @@ def timestamp_to_readable(timestamp: str | float) -> str:
         return datetime.fromtimestamp(float(timestamp)).strftime("%Y-%m-%d %H:%M:%S")
     except (ValueError, TypeError):
         return str(timestamp)
-

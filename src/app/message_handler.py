@@ -105,4 +105,3 @@ def display_statistics(messages: list[SlackMessage], target_user_id: str) -> Non
             print(f"  {user}: {count}件 ← 抽出対象")
         else:
             print(f"  {user}: {count}件")
-

@@ -30,4 +30,3 @@ class SearchResponse(TypedDict):
     ok: bool
     error: str | None
     messages: dict[str, Any]
-
