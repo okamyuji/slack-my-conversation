@@ -7,6 +7,9 @@ on:
     branches: [main, develop]
 
 jobs:
+  security:
+    uses: okamyuji/reusable-workflows/.github/workflows/security-scan.yml@v1
+
   lint-and-test:
     runs-on: ubuntu-latest
     strategy:
